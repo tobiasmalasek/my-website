@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Ruleta</title>
 
+<style>
+body{
+    background:#ffea5c;
+    text-align:center;
+    font-family:Arial;
+}
+
+button{
+    padding:15px;
+    font-size:18px;
+}
+
+#vysledek{
+    font-size:30px;
+    margin:20px;
+}
+</style>
+
+<script>
+
+function spin(){
+
+let banany = parseInt(localStorage.getItem("banany"));
+let sazka = parseInt(document.getElementById("sazka").value);
+
+if(sazka > banany){
+    alert("Nemáš dost banánů!");
+    return;
+}
+
+let cislo = Math.floor(Math.random()*2);
+
+if(cislo == 1){
+    banany += sazka;
+    document.getElementById("vysledek").innerText = "🎉 Výhra!";
+}else{
+    banany -= sazka;
+    document.getElementById("vysledek").innerText = "😢 Prohra!";
+}
+
+localStorage.setItem("banany",banany);
+
+document.getElementById("banany").innerText = banany;
+
+}
+
+function aktualizovat(){
+document.getElementById("banany").innerText =
+localStorage.getItem("banany");
+}
+
+window.onload = aktualizovat;
+
+</script>
+
+</head>
+
+<body>
+
+<h1>🎰 Ruleta mimoňů</h1>
+
+<p>Banány: <span id="banany"></span></p>
+
+<input type="number" id="sazka" placeholder="Kolik vsadíš?">
+
+<br><br>
+
+<button onclick="spin()">TOČIT 🎰</button>
+
+<p id="vysledek"></p>
+
+<br>
+
+<a href="index.html">⬅ zpět</a>
+
+</body>
+</html>
