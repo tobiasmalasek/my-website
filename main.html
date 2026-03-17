@@ -2,8 +2,7 @@
 <html lang="cs">
 <head>
 <meta charset="UTF-8">
-<title>Ruleta</title>
-
+<title>Ruleta mimoňů</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,21 +10,38 @@
 
 <div class="container">
 
-<h1>🎰 Ruleta mimoňů</h1>
+<h1>🎡 Ruleta mimoňů</h1>
 
 <div class="credit">
 Banány: <span id="banany"></span>
 </div>
 
-<input type="number" id="bet" placeholder="Kolik banánů vsadíš?">
+<input type="number" id="bet" placeholder="Kolik vsadíš?">
 
-<button class="btn spin" onclick="spin()">TOČIT RULETU</button>
+<div class="wheel-container">
+
+<div class="pointer">▼</div>
+
+<div id="wheel" class="wheel">
+<div class="segment win">2x</div>
+<div class="segment lose">0</div>
+<div class="segment win">3x</div>
+<div class="segment lose">0</div>
+<div class="segment win">5x</div>
+<div class="segment lose">0</div>
+</div>
+
+</div>
+
+<button class="btn spin" onclick="spinWheel()">TOČIT</button>
 
 <div id="result"></div>
 
 <br>
 
-<a href="index.html" class="back">⬅ zpět</a>
+<button class="btn" onclick="window.location.href='index.html'">
+⬅ Hlavní menu
+</button>
 
 </div>
 
