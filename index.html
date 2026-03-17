@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Mimoň Casino 🍌</title>
 
+<style>
+body{
+    background:#ffd90f;
+    text-align:center;
+    font-family:Arial;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    margin:10px;
+    cursor:pointer;
+}
+
+h1{
+    color:#0046ad;
+}
+</style>
+
+<script>
+if(!localStorage.getItem("banany")){
+    localStorage.setItem("banany",100);
+}
+
+function aktualizovat(){
+    document.getElementById("banany").innerText =
+    localStorage.getItem("banany");
+}
+
+function koupitBanany(){
+    let b = parseInt(localStorage.getItem("banany"));
+    b += 50;
+    localStorage.setItem("banany",b);
+    aktualizovat();
+}
+
+function hrat(){
+    window.location.href = "roulette.html";
+}
+
+window.onload = aktualizovat;
+</script>
+
+</head>
+
+<body>
+
+<h1>🍌 MIMOŇ CASINO 🍌</h1>
+
+<p>Máš <span id="banany"></span> banánů</p>
+
+<button onclick="hrat()">🎰 Začít hrát</button>
+<br>
+<button onclick="koupitBanany()">🍌 Dokoupit banány</button>
+
+</body>
+</html>
