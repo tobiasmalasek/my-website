@@ -19,7 +19,7 @@ function startGame(){
 window.location.href="main.html";
 }
 
-function spin(){
+function spinWheel(){
 
 let bananas = parseInt(localStorage.getItem("banany"));
 let bet = parseInt(document.getElementById("bet").value);
@@ -34,24 +34,39 @@ alert("Nemáš dost banánů");
 return;
 }
 
-let random = Math.random();
+let wheel = document.getElementById("wheel");
+
+let randomDeg = 3600 + Math.floor(Math.random()*360);
+
+wheel.style.transform = "rotate(" + randomDeg + "deg)";
+
+setTimeout(()=>{
+
+let resultIndex = Math.floor(Math.random()*6);
 
 let result = document.getElementById("result");
 
-if(random > 0.5){
+let multiplier = [2,0,3,0,5,0][resultIndex];
 
-bananas += bet;
-result.innerHTML = "🎉 VÝHRA +" + bet + " 🍌";
+if(multiplier > 0){
+
+let win = bet * multiplier;
+bananas += win;
+
+result.innerHTML = "🎉 Výhra " + win + " 🍌";
 
 }else{
 
 bananas -= bet;
-result.innerHTML = "💀 PROHRA -" + bet + " 🍌";
+
+result.innerHTML = "💀 Prohra -" + bet + " 🍌";
 
 }
 
 localStorage.setItem("banany",bananas);
 updateBananas();
+
+},4000);
 
 }
 
